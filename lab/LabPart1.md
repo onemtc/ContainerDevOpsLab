@@ -12,9 +12,23 @@ In this lab, you will use Azure DevOps to automate the build and deployment of y
 
 ## Exercise 0:  Setup
 
+In this exercise, we will scaffold out the infrastructure used with the following lab exercies.  While not a part of this lab, the example code could be used as the basis for an infrastructure as code approach to maintaining the infrastructure.
 
+1. This exercise will use the **Azure Cloud Shell** as the environment to deploy the infrastructure.  From your browser, navigate to https://shell.azure.com
+2. From inside the Azure Cloud Shell, run the following commands to configure git:
+```
+    git config --global user.name "<your name>"
+    git config --global user.email <your email>
+```
+3. Using Git, pull down the lab materials into a new directory called lab1:
+```
+git clone https://github.com/larryclaman/ContainerDevOpsLab.git lab1
+```
+4. From within the Azure Cloud Shell cd to the lab1/IaC folder which you just created.  ("`cd lab1/IaC`")
+5. Load the configuration script into the **code** editor:  `code configscript.sh`
+6. You will see the configuration script in the editor.  The first & second lines need to be customized appropriately.  Make these edits, then press `Cntrl-S` to save the file.
+7. From the command line, run the script  `bash configscript.sh`
 
-**_To Be written_**
 
 ## Exercise 1 - Create a new project and clone the GitHub repo
 1. Open the Azure DevOps portal [Azure DevOps](http://dev.azure.com) 
