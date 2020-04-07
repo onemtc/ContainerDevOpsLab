@@ -1,3 +1,7 @@
+#!/bin/bash
+# exit when any command fails
+set -e
+
 Prefix="xxx"   # must be globally unique; replace xxx with your initials
 rg="devopscontainerlabRG"
 location="EastUS"
