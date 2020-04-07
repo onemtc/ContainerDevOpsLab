@@ -123,7 +123,7 @@ From Your Azure DevOps project:
 
 ### Task 8 - configure build options
 1. Select `Options` from top menu
-2. On the left-pane, set `Build number format` to _$(date:yyyyMMdd)$(rev:.r)_ 
+2. On the left-pane, set `Build number format` to _\$(date:yyyyMMdd)\$(rev:.r)_ 
 3. On the right-pane, set `Build job timeout in minutes` to '0'
 4. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
