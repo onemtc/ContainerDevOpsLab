@@ -198,7 +198,18 @@ From Your Azure DevOps project:
 12. Scroll down to the section `Output Variables`, and set `Reference name` to 'AzureRmWebAppDeployment1' 
 13. Select `Save` from the top menu and save using the default values
 
-### Task 5 - configure variables
+### Task 5 - restart app service
+_This step is not technically needed, but I have found it ensures that the container starts up correctly within the app service_
+1. Select `+` next to `Web App deployment` in the left-pane and search for 'Azure App Service manage' and select `Add`
+2. Select your new task from the left-pane , which will be labeled `Swap Slots`
+3. Set `Display name` to 'App Service - Restart' 
+4. Under  `Azure subscription`, select your previously created service connection 
+5. Set  `Action` to 'Restart App Service'
+6. Set `App Service Name` to the name of your App Service.  (created during the setup phase)
+7. Select `Save` from the top menu and save using the default values
+
+
+### Task 6 - configure variables
 1. Select `Variables` from the top menu
 2. Select `+ Add` and create the following variables
 
@@ -213,7 +224,7 @@ From Your Azure DevOps project:
 
 3. Select `Save` from the top menu and save using the default values
 
-### Task 5 - Test your release pipeline
+### Task 7 - Test your release pipeline
 1. From pipeline window, press `Create Release` to start the release pipeline.
 2.  Click on the release job to watch the logs as the release executes
 3.  If you entered everything correctly, the pipeline should finish sucessfully
