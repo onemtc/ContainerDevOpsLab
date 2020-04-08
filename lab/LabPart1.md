@@ -85,8 +85,9 @@ From Your Azure DevOps project:
 6. From `Docker Compose File`, select `...` and search for the file 'docker-compose.yml'
 7. Enter 'DOCKER_BUILD_SOURCE=' in the `Environment Variables` dialogue  _FYI, this variable is an artifact from when the project was originally created in VS2017; we are setting it null to ignore it_
 8. From `Action` select 'Build service images' from the dropdown
-9. Scroll down to the `Output Variables` section and set `Reference name` to 'Task2'
-10. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
+9. In `Additional Image Tags`, enter '$(BUILD.BUILDID)'
+10. Scroll down to the `Output Variables` section and set `Reference name` to 'Task2'
+11. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 4 - Create Push Services
 1. From the left-pane menu, select `+` next to `docker` and search for 'docker compose' and select `Add`
@@ -97,8 +98,9 @@ From Your Azure DevOps project:
 6. From `Docker Compose File`, select `...` and search for the file 'docker-compose.yml'
 7. Enter 'DOCKER_BUILD_SOURCE=' in the `Environment Variables` dialogue
 8. From `Action` select 'Push service images' from the dropdown
-9. Scroll down to the `Output Variables` section and set `Reference name` to 'Task3'
-10. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
+9. In `Additional Image Tags`, enter '$(BUILD.BUILDID)'
+10. Scroll down to the `Output Variables` section and set `Reference name` to 'Task3'
+11. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 5: create Publish Artifact
 1. From the left-pane menu, select `+` next to `docker` and search for 'Publish build artifacts' and select `Add` 
@@ -196,7 +198,18 @@ From Your Azure DevOps project:
 12. Scroll down to the section `Output Variables`, and set `Reference name` to 'AzureRmWebAppDeployment1' 
 13. Select `Save` from the top menu and save using the default values
 
-### Task 5 - configure variables
+### Task 5 - restart app service
+_This step is not technically needed, but I have found it ensures that the container starts up correctly within the app service_
+1. Select `+` next to `Web App deployment` in the left-pane and search for 'Azure App Service manage' and select `Add`
+2. Select your new task from the left-pane , which will be labeled `Swap Slots`
+3. Set `Display name` to 'App Service - Restart' 
+4. Under  `Azure subscription`, select your previously created service connection 
+5. Set  `Action` to 'Restart App Service'
+6. Set `App Service Name` to the name of your App Service.  (created during the setup phase)
+7. Select `Save` from the top menu and save using the default values
+
+
+### Task 6 - configure variables
 1. Select `Variables` from the top menu
 2. Select `+ Add` and create the following variables
 
@@ -211,7 +224,7 @@ From Your Azure DevOps project:
 
 3. Select `Save` from the top menu and save using the default values
 
-### Task 5 - Test your release pipeline
+### Task 7 - Test your release pipeline
 1. From pipeline window, press `Create Release` to start the release pipeline.
 2.  Click on the release job to watch the logs as the release executes
 3.  If you entered everything correctly, the pipeline should finish sucessfully
