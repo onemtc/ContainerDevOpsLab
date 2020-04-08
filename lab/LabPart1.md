@@ -85,8 +85,9 @@ From Your Azure DevOps project:
 6. From `Docker Compose File`, select `...` and search for the file 'docker-compose.yml'
 7. Enter 'DOCKER_BUILD_SOURCE=' in the `Environment Variables` dialogue  _FYI, this variable is an artifact from when the project was originally created in VS2017; we are setting it null to ignore it_
 8. From `Action` select 'Build service images' from the dropdown
-9. Scroll down to the `Output Variables` section and set `Reference name` to 'Task2'
-10. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
+9. In `Additional Image Tags`, enter '$(BUILD.BUILDID)'
+10. Scroll down to the `Output Variables` section and set `Reference name` to 'Task2'
+11. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 4 - Create Push Services
 1. From the left-pane menu, select `+` next to `docker` and search for 'docker compose' and select `Add`
@@ -97,8 +98,9 @@ From Your Azure DevOps project:
 6. From `Docker Compose File`, select `...` and search for the file 'docker-compose.yml'
 7. Enter 'DOCKER_BUILD_SOURCE=' in the `Environment Variables` dialogue
 8. From `Action` select 'Push service images' from the dropdown
-9. Scroll down to the `Output Variables` section and set `Reference name` to 'Task3'
-10. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
+9. In `Additional Image Tags`, enter '$(BUILD.BUILDID)'
+10. Scroll down to the `Output Variables` section and set `Reference name` to 'Task3'
+11. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 5: create Publish Artifact
 1. From the left-pane menu, select `+` next to `docker` and search for 'Publish build artifacts' and select `Add` 
