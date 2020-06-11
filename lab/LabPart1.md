@@ -37,7 +37,7 @@ git clone https://github.com/larryclaman/ContainerDevOpsLab.git lab1
 4. Set the **Project name** to a name of your choice
 5. In the **Visibility** section, select `Private`
 6. Select `Advanced`, in **Version control** select 'GIT' and in **Work item process** select 'Scrum' 
-7. Select `Create` at the bottom right of the page5. Once your project has been created, select `Repos` from left-pane menu
+7. Select `Create` at the bottom right of the page. Once your project has been created, select `Repos` from left-pane menu
 6. From the Repos page, select `Import` in the `or import a repository` section
 7. `Source type` should be set to 'Git', and in `Clone URL` enter this URL and leave `Requires authorization` unchecked
     https://github.com/MSTecs/Azure-DevDay-lab4-demoProject.git

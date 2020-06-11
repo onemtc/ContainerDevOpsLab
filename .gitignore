@@ -1,0 +1,15 @@
+﻿
+
+/.vs
+/code/obj
+/code/src/MyHealth.API/obj
+/code/src/MyHealth.API/bin/Debug/netstandard1.6
+/code/src/MyHealth.Web/bin/Debug/netcoreapp1.0
+/code/src/MyHealth.Web/obj
+/code/src/MyHealth.Model/bin/Debug/netstandard1.6
+/code/src/MyHealth.Model/obj
+/code/src/MyHealth.Data/bin/Debug/netstandard1.6
+/code/src/MyHealth.Data/obj
+/code/src/MyHealth.Helpers/obj
+/code/test/MyHealth.API.IntegrationTests/obj
+//code/test/MyHealth.API.IntegrationTests/bin/Debug/netcoreapp1.0
