@@ -1,6 +1,6 @@
 # DevOps Lab - Use Azure DevOps to manage build and deployment of your application
 
-*Based on a lab from https://github.com/microsoft/MTC_2020AzureMigrateYourApps*
+*Based on a lab from https://github.com/microsoft/MTC_2020AzureMigrateYourApps and application code from https://github.com/MSTecs/Azure-DevDay-lab4-demoProject*
 
 ## Lab Goals: Deploying a Docker based web application to Azure App Service
 In this lab, you will use Azure DevOps to automate the build and deployment of your application to Azure
