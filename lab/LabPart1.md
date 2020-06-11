@@ -40,7 +40,7 @@ git clone https://github.com/larryclaman/ContainerDevOpsLab.git lab1
 7. Select `Create` at the bottom right of the page. Once your project has been created, select `Repos` from left-pane menu
 6. From the Repos page, select `Import` in the `or import a repository` section
 7. `Source type` should be set to 'Git', and in `Clone URL` enter this URL and leave `Requires authorization` unchecked
-    https://github.com/MSTecs/Azure-DevDay-lab4-demoProject.git
+    https://github.com/larryclaman/ContainerDevOpsLab.git
 8. Select `Import`
 9. Select `Files` under `Repos` from the left-pane menu and you will see the cloned GitHub repo
 
@@ -49,7 +49,7 @@ git clone https://github.com/larryclaman/ContainerDevOpsLab.git lab1
 ### Task 1 - configure the DevOps Pipeline
 
 From Your Azure DevOps project:
-1. Select `Pipelines` from the left-pane menu and then select `Builds`.  Select `New pipeline`
+1. Select `Pipelines` from the left-pane menu and then select `Pipelines`.  Select `Create pipeline`
 2. Select `Use the classic editor to create a pipeline without YAML` option at the bottom of the page       
 9.  Select `Azure Repos Git` and select your project and repository, leave the branch on 'master' 
 10. Select `Continue`
@@ -69,10 +69,9 @@ From Your Azure DevOps project:
 4. From `Azure subscription`, select the dropdown next to `Authorize` and select `Advanced options`
 5. In the 'Add an Azure Resource Manager service connection' window, optionally limit the scope to your resource group, then select `OK` from the window to create a service connection
 9. Select `Azure Container Registry` using the dropdown.  Choose the Azure Container Registry that was created during the setup exercise.
-10. From `Docker Compose File`, select `...` and search for the file 'docker-compose.ci.build.yml'
+10. From `Docker Compose File`, select `...` and select the file 'code/docker-compose.ci.build.yml'
 11. Scroll down to `Action` and select 'Run service images' from the dropdown
 12. Uncheck `Run in Background`
-13. Scroll down to the `Output Variables` section and set `Reference name` to 'Task1'
 14. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 3 - create Build services
@@ -82,11 +81,10 @@ From Your Azure DevOps project:
 3. Set `Display name` to 'Build services'
 4. From `Azure subscription`, select your previously created service connection 
 5. Select the `Azure Container Registry` and choose the Azure Container Registry that was created during the setup exercise.
-6. From `Docker Compose File`, select `...` and search for the file 'docker-compose.yml'
-7. Enter 'DOCKER_BUILD_SOURCE=' in the `Environment Variables` dialogue  _FYI, this variable is an artifact from when the project was originally created in VS2017; we are setting it null to ignore it_
+6. From `Docker Compose File`, select `...` and select the file 'code/docker-compose.yml'
+7. Enter `DOCKER_BUILD_SOURCE=` in the `Environment Variables` dialogue  _FYI, this variable is an artifact from when the project was originally created in VS2017; we are setting it null to ignore it_
 8. From `Action` select 'Build service images' from the dropdown
-9. In `Additional Image Tags`, enter '$(BUILD.BUILDID)'
-10. Scroll down to the `Output Variables` section and set `Reference name` to 'Task2'
+9. In `Additional Image Tags`, enter `$(BUILD.BUILDID)`
 11. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 4 - Create Push Services
@@ -95,26 +93,24 @@ From Your Azure DevOps project:
 3. Set `Display name` to 'Push services'
 4. From `Azure subscription`, select your previously created service connection 
 5. Select the `Azure Container Registry` and choose the Azure Container Registry that was created during the setup exercise.
-6. From `Docker Compose File`, select `...` and search for the file 'docker-compose.yml'
-7. Enter 'DOCKER_BUILD_SOURCE=' in the `Environment Variables` dialogue
+6. From `Docker Compose File`, select `...` and select the file 'code/docker-compose.yml'
+7. Enter `DOCKER_BUILD_SOURCE=` in the `Environment Variables` dialogue
 8. From `Action` select 'Push service images' from the dropdown
-9. In `Additional Image Tags`, enter '$(BUILD.BUILDID)'
-10. Scroll down to the `Output Variables` section and set `Reference name` to 'Task3'
+9. In `Additional Image Tags`, enter `$(BUILD.BUILDID)`
 11. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 5: create Publish Artifact
 1. From the left-pane menu, select `+` next to `docker` and search for 'Publish build artifacts' and select `Add` 
 2. Select `Publish Artifact: drop` from the left-pane
 3. Set `Display name` to 'Publish artifacts'
-4. Set `Path to publish` to 'myhealthclinic.dacpac'
-5. Set `Artifact name` to 'dacpac'
-6. Scroll down to the `Output Variables` section and set `Reference name` to 'PublishBuildArtifacts2'
+4. Set `Path to publish` to `code/myhealthclinic.dacpac`
+5. Set `Artifact name` to `dacpac`
 7. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
 ### Task 6 - Set variables
 1. Select `Variables` from top menu
 2. Create these variables by selecting the `+ Add` button
-    - Name: BuildConfiguration Value: Release.  Check the `Settable at queue time` option
+    - Name: BuildConfiguration Value: Release  Check the `Settable at queue time` option
     - Name: BuildPlatform Value: Any CPU
 3. From the top menu, select the dropdown for `Save & queue` and choose `Save` using the default values
 
@@ -162,18 +158,17 @@ From Your Azure DevOps project:
 1. From the top menu, select `Tasks` 
 2. Select `Agent job`
 3. Set `Display name` to 'DB Deployment'
-4. Select the `+ Add` button and create the variable
+4. Select the `+ Add` button next to 'Demands' and create the item
     - Name: sqlpackage, Condition: exists
 5. Select `+` next to `DB Deployment` in left-pane and search for 'Azure SQL database deployment' and select `Add`
 7. From the left-pane, select `Azure SQL Dacpac Task`
 8. Set `Display name` to 'Execute Azure SQL : DacpacTask'
 9. From `Azure subscription`, select your previously created service connection 
-10. Set `Azure SQL Server` to '$(SQLserver)' 
-11. Set `Database` to '$(DatabaseName)'
-12. Set `Login` to ' $(SQLadmin)' (with a blank space at the beginning)
-13. Set `Password` to '$(Password)' 
-14. Scroll down to the section `Deployment Package`, and set `DACPAC File` to '$(System.DefaultWorkingDirectory)/**/*.dacpac' 
-15. Scroll down to the section `Output Variables`, and set `Reference name` to 'SqlAzureDacpacDeployment1'
+10. Set `Azure SQL Server` to `$(SQLserver)`
+11. Set `Database` to `$(DatabaseName)`
+12. Set `Login` to ' $(SQLadmin)' (with a blank space at the beginning but no quotes)
+13. Set `Password` to `$(Password)` 
+14. Scroll down to the section `Deployment Package`, and set `DACPAC File` to `$(System.DefaultWorkingDirectory)/**/*.dacpac`
 16. Select `Save` from the top and save using the default values
 
 ### Task 3 - create and configure the Web App deployment agent
@@ -192,10 +187,9 @@ From Your Azure DevOps project:
 6. From `Azure subscription`, select your previously created service connection 
 7. Set `App type` to  'Linux Web App' from the dropdown
 8. Set `App Service Name` to the name of your App Service.  (created during the setup phase)
-9. Set `Registry or Namespace` to '$(ACR)'
-10. Set `Image` to 'myhealth.web' 
-11. Set `Tag` to '$(BUILD.BUILDID)'
-12. Scroll down to the section `Output Variables`, and set `Reference name` to 'AzureRmWebAppDeployment1' 
+9. Set `Registry or Namespace` to `$(ACR)`
+10. Set `Image` to `myhealth.web`
+11. Set `Tag` to `$(BUILD.BUILDID)`
 13. Select `Save` from the top menu and save using the default values
 
 ### Task 5 - restart app service
@@ -242,7 +236,7 @@ _This step is not technically needed, but I have found it ensures that the conta
 
 ## Exercise 4 - Initiate the Continuous Integration Build and Deployment
 
-1. From the left-pane menu, select `Repos` and then `Files`.  Navigate to the (ProjectName)/src/MyHealth.Web/Views/Home folder and open Index.cshtml file for editing
+1. From the left-pane menu, select `Repos` and then `Files`.  Navigate to the (ProjectName)/code/src/MyHealth.Web/Views/Home folder and open Index.cshtml file for editing
     - Modify the text 'JOIN US' to 'CONTACT US' on line 28, and then select `Commit` button accepting its default values.  This action will initiate an automatic build 
 2. Select `Pipelines` and then `Builds` from the left-pane menu then select the build name just committed from the right-pane
     - The Build will generate and push the docker image of the web application to the Azure Container Registry. Once the build is completed, the build summary will be displayed
