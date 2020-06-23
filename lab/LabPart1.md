@@ -22,7 +22,7 @@ In this exercise, we will scaffold out the infrastructure used with the followin
 ```
 3. Using Git, pull down the lab materials into a new directory called lab1:
 ```
-git clone https://github.com/larryclaman/ContainerDevOpsLab.git lab1
+git clone https://github.com/onemtc/ContainerDevOpsLab.git lab1
 ```
 4. From within the Azure Cloud Shell cd to the lab1/IaC folder which you just created.  ("`cd lab1/IaC`")
 5. Load the configuration script into the **code** editor:  `code configscript.sh`
@@ -40,7 +40,7 @@ git clone https://github.com/larryclaman/ContainerDevOpsLab.git lab1
 7. Select `Create` at the bottom right of the page. Once your project has been created, select `Repos` from left-pane menu
 6. From the Repos page, select `Import` in the `or import a repository` section
 7. `Source type` should be set to 'Git', and in `Clone URL` enter this URL and leave `Requires authorization` unchecked
-    https://github.com/larryclaman/ContainerDevOpsLab.git
+    https://github.com/onemtc/ContainerDevOpsLab.git
 8. Select `Import`
 9. Select `Files` under `Repos` from the left-pane menu and you will see the cloned GitHub repo
 
