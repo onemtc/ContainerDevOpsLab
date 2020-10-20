@@ -1,6 +1,6 @@
 # DevOps Lab Part 2 - Container Security
 
-*This lab leverages [Trivy, from Azua](https://github.com/aquasecurity/trivy) as a simple container scanning tool.  AzDo integration tips come from [Pixel Robots Blog](https://pixelrobots.co.uk/2020/02/use-trivy-and-azure-devops-to-scan-container-images-for-vulnerabilities/)*
+*This lab leverages [Trivy, from Aqua](https://github.com/aquasecurity/trivy) as a simple container scanning tool.  AzDo integration tips come from [Pixel Robots Blog](https://pixelrobots.co.uk/2020/02/use-trivy-and-azure-devops-to-scan-container-images-for-vulnerabilities/)*
 
 
 ## Lab Goals: Scan a container for security vinerabilities as part of the build process
